@@ -483,7 +483,7 @@
 :fields = "json_fields"
    
     name  = "استمارة مستفيد.xls"
-         
+        @click="excel" 
         >
                   <v-btn
                   color="success"
