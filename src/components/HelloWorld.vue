@@ -16,7 +16,6 @@
         <h1 >معلومات دفتر العائلة</h1>
         </v-col>
         <v-card
-              
 
               class="d-flex align-content-start flex-wrap"
               color="grey lighten-2"
@@ -24,7 +23,8 @@
               tile
               min-height="200"
         >
-          <v-col xs="2">
+       <v-row class="mb-6">
+          <v-col sm="3">
             <v-select
               v-model="form.recptype"
               :items="items"
@@ -34,7 +34,7 @@
             />
           </v-col>
           
-          <v-col xs="2">
+          <v-col sm="3">
             <v-text-field
               v-model="form.currentaddress"
              
@@ -43,7 +43,7 @@
               required
             />
           </v-col>
-          <v-col xs="2">
+          <v-col sm="3">
             <v-select
               v-model="form.area"
               :items="areaitem"
@@ -51,8 +51,8 @@
               label="المنطقة"
               required
             />
-          </v-col >
-          <v-col xs="2">
+          </v-col>
+          <v-col sm="3">
             <v-select
               v-model="form.addresstype"
               :items="addressitems"
@@ -61,7 +61,9 @@
               required
             />
           </v-col>
-          <v-col xs="2">
+           </v-row>
+           <v-row class="mb-6">
+          <v-col sm="3">
             
             <v-text-field
               v-model="form.previousaddress"
@@ -71,7 +73,7 @@
               required
             />
           </v-col>
-          <v-col xs="2">
+          <v-col sm="3">
             <v-text-field
               v-model="form.phoneNumber"
               :counter="10"
@@ -80,11 +82,7 @@
               required
             ></v-text-field>
           </v-col>
-
-             
-    <v-col
-     xs="2"
-    >
+          <v-col sm="5" >
       <v-menu
         ref="menu"
         v-model="menu"
@@ -114,9 +112,9 @@
         >
                 </v-date-picker>
       </v-menu>
-    </v-col>
- 
-          <v-col xs="2">   
+          </v-col>
+ </v-row>
+          <v-col sm="3">   
         <v-text-field
         v-model="form.idnumber"
           :disabled="idnumber"
@@ -130,7 +128,7 @@
           class="shrink mr-2 mt-0"
         ></v-checkbox>
           </v-col>
-          <v-col xs="2">
+          <v-col sm="3">
             <v-select
               v-model="form.knowlageselect"
               :items="knowlageitem"
@@ -138,6 +136,7 @@
               required
             />
           </v-col>
+         
         </v-card>
         
       <v-col class="d-flex justify-center mb-6">
@@ -150,26 +149,22 @@
             :key="item.form"
           >
   
-            <v-card 
-           
- 
+            <v-card
               class="d-flex align-content-start flex-wrap"
               color="grey lighten-2"
               flat
               tile
-              min-height="200"
-            >
-              <v-col xs="2">
+              min-height="200">
+              <v-row class="mb-6">
+              <v-col sm="2">
                 <v-text-field
-                  v-model="forms[i].name"
-
-                 :counter="10"
-                  :rules="nameRules"
-                  label="الاسم"
-                  required
-                />
+                v-model="forms[i].name"
+                :counter="10"
+                :rules="nameRules"
+                label="الاسم"
+                required/>
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].fathername"
                   
@@ -179,7 +174,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].mothername"
                   :counter="10"
@@ -188,7 +183,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].nikename"
                   :counter="10"
@@ -197,7 +192,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2"> 
+              <v-col sm="2"> 
                 <v-select
                   v-model="forms[i].Gselect"
                   :items="gitems"
@@ -205,7 +200,9 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              </v-row>
+              <v-row class="mb-6">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].relative"
               
@@ -215,7 +212,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].placebirth"
                   :counter="10"
@@ -224,7 +221,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
     
     <v-menu
     
@@ -254,9 +251,7 @@
     </v-menu>
 
               </v-col>
-
-          
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-radio-group
                   v-model="forms[i].gender"
                   column
@@ -273,7 +268,7 @@
                   />
                 </v-radio-group>
               </v-col>
-              <v-col  xs="2">
+              <v-col sm="2">
                <v-select
               v-model="forms[i].nationalty"
               :items="nationaltyitems"
@@ -283,8 +278,9 @@
             />
     
               </v-col>
-
-              <v-col xs="2">
+              </v-row>
+<v-row class="mb-6">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].education"
                   :counter="10"
@@ -294,7 +290,7 @@
                 />
               </v-col>
 
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].lastwork"
                   
@@ -302,7 +298,7 @@
                   required
                 />
               </v-col>
-              <v-col xs="2">
+              <v-col sm="2">
                 <v-text-field
                   v-model="forms[i].work"
                   
@@ -326,9 +322,8 @@
                   required
                 />
               </v-col>
-        
-         
-      <v-col xs="6" >
+</v-row>
+      <v-col sm="12" >
         <v-combobox
           v-model="forms[i].weakpoint"
           :items="multiweakpoint"
@@ -339,7 +334,7 @@
           :rules="[v => !!v || 'يمكن ادخال أكثر من نقطة ضعف ']"
         ></v-combobox>
       </v-col>
-          <v-col xs='4'>   
+          <v-col ms='4'>   
            <v-checkbox
           v-model="forms.pss"
           hide-details
@@ -367,7 +362,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                    <v-col xs='4'>
+                    <v-col ms='4'>
            <v-checkbox
           v-model="forms.GBV"
           hide-details
@@ -395,7 +390,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                    <v-col xs='4'>
+                    <v-col ms='4'>
            <v-checkbox
           v-model="forms.MIKA"
           hide-details
@@ -424,14 +419,14 @@
         ></v-text-field>
           </v-col>
 
-          <v-col xs="8">
+          <v-col md="8">
                     <v-text-field
           v-model="forms[i].notes"
         
               label="ملاحظات" 
         ></v-text-field>
           </v-col>
-         <v-col xs="2">
+         <v-col md="2">
                     <v-text-field
           v-model="form.username"
         
