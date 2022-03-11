@@ -1,11 +1,7 @@
 <template>
   <v-container>
     <template>
-      <v-container class="container align-self-center">
-        <h2>
-          استمارةبيانات المستفيد
-        </h2>
-      </v-container>
+
          
 
       <v-form
@@ -13,13 +9,19 @@
         ref="form"
         v-model="valid"
         lazy-validation
+         
+        
       >
-        <h3>معلومات دفتر العائلة</h3>
+      <v-col class="d-flex justify-center mb-6">
+        <h1 >معلومات دفتر العائلة</h1>
+        </v-col>
         <v-card
-          class="d-flex flex-row mb-6"
-          :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-4'"
-          flat
-          tile
+
+              class="d-flex align-content-start flex-wrap"
+              color="grey lighten-2"
+              flat
+              tile
+              min-height="200"
         >
           <v-col>
             <v-select
@@ -33,7 +35,7 @@
           
           <v-col>
             <v-text-field
-              v-model="forms.currentaddress"
+              v-model="form.currentaddress"
              
              
               label="العنوان الحالي"
@@ -93,18 +95,19 @@
         min-width="auto"
       > 
       <template v-slot:activator="{ on, attrs }">
-      <v-text-field
-            v-model="form.IDPdate"
-            label="تاريخ نزوح "
-            prepend-icon="mdi-calendar"
-            readonly
-            v-bind="attrs"
-            v-on="on"
-          ></v-text-field>
-           </template>
+        <v-text-field
+          v-model="form.IDPdate"
+          label="تاريخ نزوح"
+          prepend-icon="mdi-calendar"
+          readonly
+          v-bind="attrs"
+          v-on="on"
+        ></v-text-field>
+      </template>
           <v-date-picker
           v-model="form.IDPdate"
           type="month"
+          :active-picker.sync="activePicker"
           no-title
           scrollable
         >
@@ -136,10 +139,12 @@
           </v-col>
         </v-card>
         
-        <h3>معلومات شخصية</h3>
+      <v-col class="d-flex justify-center mb-6">
+        <h1 >معلومات شخصية </h1>
+        </v-col>
          
-        <ul>
-          <li
+        <dl>
+          <dt
             v-for="(item, i) in forms"
             :key="item.form"
           >
@@ -217,12 +222,10 @@
                   required
                 />
               </v-col>
-              <v-col>
-                  <div>
+              <v-col sm="2">
     
     <v-menu
-      ref="menu"
-      v-model="menu"
+    
       :close-on-content-click="false"
       transition="scale-transition"
       offset-y
@@ -230,7 +233,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-text-field
-          v-model="form.Birthday"
+          v-model="forms[i].Birthday"
           label="تاريخ الولادة"
           prepend-icon="mdi-calendar"
           readonly
@@ -239,14 +242,15 @@
         ></v-text-field>
       </template>
       <v-date-picker
-        v-model="form.Birthday"
+        v-model="forms[i].Birthday"
         :active-picker.sync="activePicker"
         :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
         min="1950-01-01"
         @change="save"
+        required
       ></v-date-picker>
     </v-menu>
-  </div>
+
               </v-col>
 
           
@@ -254,6 +258,7 @@
                 <v-radio-group
                   v-model="forms[i].gender"
                   column
+                  required
                 >
                   الجنس
                   <v-radio
@@ -266,14 +271,15 @@
                   />
                 </v-radio-group>
               </v-col>
-              <v-col sm="2">
-                <v-text-field
-                  v-model="forms[i].nationalty"
-                  :counter="10"
-                  :rules="nameRules"
-                  label="الجنسية "
-                  required
-                />
+              <v-col>
+               <v-select
+              v-model="forms[i].nationalty"
+              :items="nationaltyitems"
+             
+              label="الجنسية "
+              required
+            />
+    
               </v-col>
 
               <v-col sm="2">
@@ -333,7 +339,7 @@
       </v-col>
           <v-col ms='4'>   
            <v-checkbox
-          v-model="form.pss"
+          v-model="forms.pss"
           hide-details
           label="pss" 
           class="shrink mr-2 mt-0"
@@ -347,7 +353,7 @@
           </v-col>
           <v-col ms='4'>
            <v-checkbox
-          v-model="form.cp"
+          v-model="forms.cp"
           hide-details
           label="cp" 
           class="shrink mr-2 mt-0"
@@ -355,13 +361,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].cp"
-          :disabled="!form.cp"
+          :disabled="!forms.cp"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
                     <v-col ms='4'>
            <v-checkbox
-          v-model="form.GBV"
+          v-model="forms.GBV"
           hide-details
           label="GBV" 
           class="shrink mr-2 mt-0"
@@ -369,13 +375,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].GBV"
-          :disabled="!form.GBV"
+          :disabled="!forms.GBV"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
                     <v-col ms='4'>
            <v-checkbox
-          v-model="form.GIKA"
+          v-model="forms.GIKA"
           hide-details
           label="GIKA" 
           class="shrink mr-2 mt-0"
@@ -383,13 +389,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].GIKA"
-          :disabled="!form.GIKA"
+          :disabled="!forms.GIKA"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
                     <v-col ms='4'>
            <v-checkbox
-          v-model="form.MIKA"
+          v-model="forms.MIKA"
           hide-details
           label="MIKA" 
           class="shrink mr-2 mt-0"
@@ -397,13 +403,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].MIKA"
-          :disabled="!form.MIKA"
+          :disabled="!forms.MIKA"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
                   <v-col ms='4'>
            <v-checkbox
-          v-model="form.edu"
+          v-model="forms.edu"
           hide-details
           label="edu" 
           class="shrink mr-2 mt-0"
@@ -411,7 +417,7 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].edu"
-          :disabled="!form.edu"
+          :disabled="!forms.edu"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
@@ -433,8 +439,14 @@
           
 
       </v-card>
-            
-            <v-btn
+ <v-col class="d-flex justify-center mb-6">
+       <h5>فرد جديد</h5>
+        </v-col>
+
+          </dt>
+        </dl>
+      <v-row class="mb-6">
+                    <v-btn
           
               class="mx-2"
               fab
@@ -446,27 +458,45 @@
                 mdi-plus
               </v-icon>
             </v-btn>
-          </li>
-        </ul>
-      
-        <export-excel 
-          :data="[form, ...forms]"
-        >
-          <v-btn
+      </v-row>
+       <v-row class="mb-3">
+                  <v-btn
             class="mr-4" 
+            :disabled="valid"
              @click="submit"
           >
-            submit
+            
+         التأكيد
           </v-btn>
-        </export-excel>
-     
-        <v-btn
+              <v-btn
           color="error"
           class="mr-4"
           @click="reset"
         >
-          Reset Form
+          حذف المعلومات
         </v-btn>
+         </v-row>
+        <export-excel 
+    class   = "btn btn-default"
+:fields = "json_fields"
+    worksheet = "My Worksheet"
+    name  = "استمارة مستفيد.xls"
+          :data="[form, ...forms]"
+        >
+                  <v-btn
+                  color="success"
+            class="mr-4" 
+          
+            @click="excel"
+
+
+          >
+            
+            حفظ معلومات المستفيد
+          </v-btn>
+        </export-excel>
+     
+  
       </v-form>
     </template>
   </v-container>
@@ -481,20 +511,54 @@ Vue.use(excel);
 export default {
    
   data: () => ({
+    json_fields: {
+            'طبيعة المستفيد': 'recptype',
+            'سكن الحالي': 'currentaddress',
+            'المنطقة': 'area',
+            'طبيعة السكن': 'addresstype',
+            'السكن السابق': 'previousaddress',
+            'تاريخ النزوح': 'IDPdate',
+            'رقم دفتر العائلة': 'idnumber',
+            'طريقة التعرف على المركز': 'knowlageselect',
+            'الاسم': 'name',
+            'اسم الاب': 'fathername',
+            'اسم الام': 'mothername',
+            'الكنية': 'nikename',
+            'علاقة مع مقدم الطلب': 'relative',
+            'مكان الولادة': 'placebirth',
+            'تاريخ الولادة': 'Birthday',
+            'الجنس': 'gender',
+            'الجنسية': 'nationalty',
+            'التعليم': 'education',
+            'العمل الحالي': 'work',
+            'العمل السابق': 'lastwork',
+            ' رقم الهوية': 'personalid',
+            'موبايل': 'mobile',
+            'الحالة الاجتماعية': 'Gselect',
+             'نقاط الضعف': 'weakpoint',
+              ' الدعم النفسي': 'pss',
+               'حماية الطفل': 'cp',
+            ' العنف القائم على النوع المجتمعي': 'GBV',
+            'مساعدة عينية': 'GIKA',
+            ' مساعدة طبية ': 'MIKA',
+            'ملاحظات': 'notes',
+            'اسم الموظف': 'username',
+
+               
+
+            
+             },
     counter:1 ,
 
     form: {   
      recptype: null,
-      currentaddress:'',
+      currentaddress:"",
       area:"",
-       addresstype: null ,
+      addresstype: null ,
       previousaddress:'',
-        date: null,
-      menu: false,
-       phoneNumber: "",
+      IDPdate: "",
+      phoneNumber: "",
       idnumber:'',
-     
-    
       knowlageselect:null ,
       name: "",
       fathername: "",
@@ -502,23 +566,21 @@ export default {
       nikename: "",
       relative: "",
       placebirth: "",
+      Birthday:"",
       gender: null,
       nationalty: "",
       education: "",
       work: "",
       lastwork: "",
-        personalid:"",
+      personalid:"",
       mobile: "",
       Gselect: null,
-      pss:"",
-      
-      IDPdate: new Date().toISOString().substr(0, 7),
-      menu: false,
-      modal: false,
       weakpoint:"" ,
+      pss:null,
       cp:"",
       GBV:"",
-      
+      GIKA:null ,
+      MIKA:"",
       notes:"",
       username:"",
     }, 
@@ -552,20 +614,25 @@ export default {
       " لاجئ أو طالب لجوء من دواة أخرى"
     ],
     areaitem:["مزة","مليحة ","زبداني ","صبورة","داريا"],
-    gitems: ["عازب ", "متزوج", "أرمل   ", "مطبق  ", "منفصل "],
+    gitems: ["عازب ", "متزوج", "أرمل   ", "مطلق  ", "منفصل "],
     knowlageitem :["جهة حكومية","كلام متداول عبر الآخرين","موظفين عاملين لدى الشريك الذي يدير المركز المجتمعي","منظمة أخرى غير حكومية أو هيئة تابعة للأمم المتحدة","متطوعي الوصول","عن طريق آخر"],
     addressitems: ["ملك","أجار","استضافة","أخرى"],
-    multiweakpoint:["شخص بحاجة للمساعدة بموضوع الوثائق","شخص بحاجة للدعم النفسي الاجتماعي","ناجية من العنف القائم على أساس النوع الاجتماعي","امرأة أكثر عرضة للخطر","طفل أكثر عرضة للخطر","مسن أكثر عرضة للخطر","مسن أكثر عرضة للخطر","شخص لديه إعاقة ","حالة صحيةحالة صحية","شخص لا يمتلك وثائق مدنية"]
+    multiweakpoint:["شخص بحاجة للمساعدة بموضوع الوثائق","شخص بحاجة للدعم النفسي الاجتماعي","ناجية من العنف القائم على أساس النوع الاجتماعي","امرأة أكثر عرضة للخطر","طفل أكثر عرضة للخطر","مسن أكثر عرضة للخطر","مسن أكثر عرضة للخطر","شخص لديه إعاقة ","حالة صحيةحالة صحية","شخص لا يمتلك وثائق مدنية"],
+    nationaltyitems:["سوري","فلسطني","صومالي","عراقي","أخرى"]
   }),
 
+ IDPdate: new Date().toISOString().substr(0, 4),
   methods: {
 
           submit() {
        this.$refs.form.validate();
-        location.reload();
+      
        
        
          
+      },
+      excel(){
+          location.reload();
       },
      
 
