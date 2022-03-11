@@ -478,10 +478,7 @@
          </v-row>
         <export-excel 
          :data="[form, ...forms]"
-    class   = "btn btn-default"
-:fields = "json_fields"
-    worksheet = "My Worksheet"
-    name  = "استمارة مستفيد.xls"
+
          
         >
                   <v-btn
