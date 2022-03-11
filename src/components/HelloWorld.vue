@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container :height="height">
     <template>
 
          
@@ -622,6 +622,18 @@ export default {
   }),
 
  IDPdate: new Date().toISOString().substr(0, 4),
+
+  computed: {
+      height () {
+        switch (this.$vuetify.breakpoint.name) {
+          case 'xs': return 220
+          case 'sm': return 400
+          case 'md': return 500
+          case 'lg': return 600
+          case 'xl': return 800
+        }
+      },
+      },
   methods: {
 
           submit() {
@@ -644,6 +656,7 @@ export default {
       save (Birthday) {
         this.$refs.menu.save(Birthday)
       },
+      
 
 
   },
