@@ -1,5 +1,5 @@
 <template>
-  <v-container >
+  <v-container class="d-flex pa-2"  >
     <template>
 
          
@@ -155,8 +155,9 @@
               flat
               tile
               min-height="200">
-              <v-row class="mb-6">
-              <v-col sm="2">
+              <v-row class="mb-3">
+            
+              <v-col sm="3">
                 <v-text-field
                 v-model="forms[i].name"
                 :counter="10"
@@ -164,7 +165,7 @@
                 label="الاسم"
                 required/>
               </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].fathername"
                   
@@ -174,7 +175,7 @@
                   required
                 />
               </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].mothername"
                   :counter="10"
@@ -183,7 +184,8 @@
                   required
                 />
               </v-col>
-              <v-col sm="2">
+              
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].nikename"
                   :counter="10"
@@ -192,7 +194,9 @@
                   required
                 />
               </v-col>
-              <v-col sm="2"> 
+              </v-row>
+              <v-row class="mb-3">
+              <v-col sm="3"> 
                 <v-select
                   v-model="forms[i].Gselect"
                   :items="gitems"
@@ -200,9 +204,7 @@
                   required
                 />
               </v-col>
-              </v-row>
-              <v-row class="mb-6">
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].relative"
               
@@ -212,7 +214,7 @@
                   required
                 />
               </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].placebirth"
                   :counter="10"
@@ -221,7 +223,7 @@
                   required
                 />
               </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
     
     <v-menu
     
@@ -251,7 +253,10 @@
     </v-menu>
 
               </v-col>
-              <v-col sm="2">
+              </v-row>
+              <v-row class="mb-3">
+
+              <v-col sm="3">
                 <v-radio-group
                   v-model="forms[i].gender"
                   column
@@ -268,7 +273,8 @@
                   />
                 </v-radio-group>
               </v-col>
-              <v-col sm="2">
+                
+              <v-col sm="3">
                <v-select
               v-model="forms[i].nationalty"
               :items="nationaltyitems"
@@ -278,9 +284,7 @@
             />
     
               </v-col>
-              </v-row>
-<v-row class="mb-6">
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].education"
                   :counter="10"
@@ -290,7 +294,7 @@
                 />
               </v-col>
 
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].lastwork"
                   
@@ -298,7 +302,9 @@
                   required
                 />
               </v-col>
-              <v-col sm="2">
+              </v-row>
+              <v-row class="mb-3">
+                <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].work"
                   
@@ -307,12 +313,12 @@
                 />
 
               </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
                   <v-text-field
                  v-model="forms[i].personalid"
                  label="الرقم الوطني" ></v-text-field>
                 </v-col>
-              <v-col sm="2">
+              <v-col sm="3">
                 <v-text-field
                   v-model="forms[i].mobile"
                   
@@ -334,9 +340,10 @@
           :rules="[v => !!v || 'يمكن ادخال أكثر من نقطة ضعف ']"
         ></v-combobox>
       </v-col>
+      <v-row class="mb-4">
           <v-col ms='4'>   
            <v-checkbox
-          v-model="forms.pss"
+           v-model="forms.pss"
           hide-details
           label="pss" 
           class="shrink mr-2 mt-0"
@@ -362,7 +369,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                    <v-col ms='4'>
+          <v-col ms='4'>
            <v-checkbox
           v-model="forms.GBV"
           hide-details
@@ -376,7 +383,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                    <v-col ms='4'>
+           <v-col ms='4'>
            <v-checkbox
           v-model="forms.GIKA"
           hide-details
@@ -390,7 +397,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                    <v-col ms='4'>
+           <v-col ms='4'>
            <v-checkbox
           v-model="forms.MIKA"
           hide-details
@@ -404,7 +411,7 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-                  <v-col ms='4'>
+           <v-col ms='4'>
            <v-checkbox
           v-model="forms.edu"
           hide-details
@@ -418,15 +425,16 @@
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
-
-          <v-col md="8">
+          </v-row>
+<v-row class=" mb-3">
+          <v-col sm="10">
                     <v-text-field
           v-model="forms[i].notes"
         
               label="ملاحظات" 
         ></v-text-field>
           </v-col>
-         <v-col md="2">
+         <v-col sm="2">
                     <v-text-field
           v-model="form.username"
         
@@ -434,7 +442,7 @@
         ></v-text-field>
           </v-col>
           
-
+</v-row>
       </v-card>
  <v-col class="d-flex justify-center mb-6">
        <h5>فرد جديد</h5>
@@ -610,7 +618,7 @@ export default {
       "لاجئ عائد إلى سورية ",
       " لاجئ أو طالب لجوء من دواة أخرى"
     ],
-    areaitem:["مزة","مليحة ","زبداني ","صبورة","داريا"],
+    areaitem:["مزة","مليحة ","زبداني ","صبورة","داريا","غزلانية"],
     gitems: ["عازب ", "متزوج", "أرمل   ", "مطلق  ", "منفصل "],
     knowlageitem :["جهة حكومية","كلام متداول عبر الآخرين","موظفين عاملين لدى الشريك الذي يدير المركز المجتمعي","منظمة أخرى غير حكومية أو هيئة تابعة للأمم المتحدة","متطوعي الوصول","عن طريق آخر"],
     addressitems: ["ملك","أجار","استضافة","أخرى"],
