@@ -488,7 +488,7 @@
 :fields = "json_fields"
    
     name  = "استمارة مستفيد.xls"
-        @click="excel" 
+        @click="reload" 
         >
                   <v-btn
                   color="success"
@@ -638,7 +638,7 @@ export default {
        
          
       },
-      excel(){
+      reload(){
           location.reload();
       },
      
