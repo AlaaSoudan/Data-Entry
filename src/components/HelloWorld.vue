@@ -343,7 +343,7 @@
       <v-row class="mb-4">
           <v-col ms='4'>   
            <v-checkbox
-           v-model="forms.pss"
+           v-model="forms[i].has_pss"
           hide-details
           label="pss" 
           class="shrink mr-2 mt-0"
@@ -351,13 +351,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].pss"
-          :disabled="!forms.pss"
+          :disabled="!forms[i].has_pss"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
           <v-col ms='4'>
            <v-checkbox
-          v-model="forms.cp"
+          v-model="forms[i].has_cp"
           hide-details
           label="cp" 
           class="shrink mr-2 mt-0"
@@ -365,13 +365,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].cp"
-          :disabled="!forms.cp"
+          :disabled="!forms[i].has_cp"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
           <v-col ms='4'>
            <v-checkbox
-          v-model="forms.GBV"
+          v-model="forms[i].has_GBV"
           hide-details
           label="GBV" 
           class="shrink mr-2 mt-0"
@@ -379,13 +379,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].GBV"
-          :disabled="!forms.GBV"
+          :disabled="!forms[i].has_GBV"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
            <v-col ms='4'>
            <v-checkbox
-          v-model="forms.GIKA"
+          v-model="forms[i].has_GIKA"
           hide-details
           label="GIKA" 
           class="shrink mr-2 mt-0"
@@ -393,13 +393,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].GIKA"
-          :disabled="!forms.GIKA"
+          :disabled="!forms[i].has_GIKA"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
            <v-col ms='4'>
            <v-checkbox
-          v-model="forms.MIKA"
+          v-model="forms[i].has_MIKA"
           hide-details
           label="MIKA" 
           class="shrink mr-2 mt-0"
@@ -407,13 +407,13 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].MIKA"
-          :disabled="!forms.MIKA"
+          :disabled="!forms[i].has_MIKA"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
            <v-col ms='4'>
            <v-checkbox
-          v-model="forms.edu"
+          v-model="forms[i].has_edu"
           hide-details
           label="edu" 
           class="shrink mr-2 mt-0"
@@ -421,7 +421,7 @@
         ></v-checkbox>
         <v-text-field
          v-model="forms[i].edu"
-          :disabled="!forms.edu"
+          :disabled="!forms[i].has_edu"
           label="ادخل الخدمة" 
         ></v-text-field>
           </v-col>
