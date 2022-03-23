@@ -3,7 +3,7 @@
     "short_name": "offline",
     "icons": [
       {
-        "src": "/img/icons/android-chrome-192x192.png",
+        "src": "/img/icons/alnada.png",
         "sizes": "192x192",
         "type": "image/png"
       }
