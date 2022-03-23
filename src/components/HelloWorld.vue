@@ -524,6 +524,7 @@ export default {
             'السكن السابق': 'previousaddress',
             'تاريخ النزوح': 'IDPdate',
             'رقم دفتر العائلة': 'idnumber',
+            'رقم الهاتف' : 'phoneNumber' ,
             'طريقة التعرف على المركز': 'knowlageselect',
             'الاسم': 'name',
             'اسم الاب': 'fathername',
